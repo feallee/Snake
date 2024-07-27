@@ -1,9 +1,9 @@
 #ifndef __SNAKE_H__
 #include <stdint.h>
 #include <stdbool.h>
-#define SNAKE_WIDTH 24
-#define SNAKE_HEIGHT 16
-#define SNAKE_BODY_COUNT 96
+#define SNAKE_WIDTH 32
+#define SNAKE_HEIGHT 24
+#define SNAKE_BODY_COUNT 129
 
 typedef enum
 {
@@ -20,8 +20,7 @@ typedef struct
 }Snake_PointType;
 
 typedef struct
-{
-	Snake_PointType Food;
+{	
 	uint8_t Count;
 	Snake_PointType Body[SNAKE_BODY_COUNT];  
 }Snake_Type;

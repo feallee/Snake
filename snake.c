@@ -28,8 +28,8 @@ static void CreateFood(Snake_Type* snake)
 		p.Row = rnd / SNAKE_WIDTH + 3;
 		p.Column = rnd % SNAKE_WIDTH + 2;
 	} while (ExistsPoint(snake, p));
-	snake->Food.Row = p.Row;
-	snake->Food.Column = p.Column;
+	snake->Body[snake->Count].Row = p.Row;
+	snake->Body[snake->Count].Column = p.Column;
 	Display_DrawChar(p.Row, p.Column, '*');
 }
 
@@ -92,10 +92,8 @@ bool Snake_Move(Snake_Type* snake, Snake_ControlType control)
 	tail.Row = snake->Body[snake->Count - 1].Row;
 	tail.Column = snake->Body[snake->Count - 1].Column;
 
-	if (head.Row == snake->Food.Row && head.Column == snake->Food.Column)//食物处理
-	{
-		snake->Body[snake->Count].Row = snake->Food.Row;
-		snake->Body[snake->Count].Column = snake->Food.Column;
+	if (head.Row == snake->Body[snake->Count].Row && head.Column == snake->Body[snake->Count].Column)//食物处理
+	{		
 		snake->Count++;
 		CreateFood(snake);
 	}
@@ -118,7 +116,7 @@ bool Snake_Move(Snake_Type* snake, Snake_ControlType control)
 
 	//处理越界和身体
 	bool r;
-	if (head.Row > 2 && head.Row < SNAKE_HEIGHT + 3 && head.Column>1 && head.Column < SNAKE_WIDTH + 2 && snake->Count < SNAKE_BODY_COUNT)
+	if (head.Row > 2 && head.Row < SNAKE_HEIGHT + 3 && head.Column>1 && head.Column < SNAKE_WIDTH + 2 && snake->Count < SNAKE_BODY_COUNT-1)
 	{
 		r = true;
 		Display_DrawChar(head.Row, head.Column, 'O');
@@ -127,11 +125,9 @@ bool Snake_Move(Snake_Type* snake, Snake_ControlType control)
 	{
 		r = false;
 		Display_DrawChar(head.Row, head.Column, 'X');
-	}
-
-	
+	}	
 
 	//处理分数
-	Display_DrawNumber(SNAKE_HEIGHT + 4, 34, snake->Count);
+	Display_DrawNumber(SNAKE_HEIGHT + 4, 34, snake->Count-1);
 	return r;
 }
