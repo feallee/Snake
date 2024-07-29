@@ -1,4 +1,5 @@
 #ifndef __DISPLAY__H__
+#define __DISPLAY__H__
 #include <stdint.h>
 void Display_Clear(void);
 void Display_DrawChar(uint8_t row, uint8_t column, char value);

@@ -1,5 +1,5 @@
 #ifndef __KEY_H__
-
+#define __KEY_H__
 typedef enum
 {
 	KEY_NONE,

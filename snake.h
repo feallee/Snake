@@ -1,4 +1,5 @@
 #ifndef __SNAKE_H__
+#define __SNAKE_H__
 #include <stdint.h>
 #include <stdbool.h>
 #define SNAKE_WIDTH 32
